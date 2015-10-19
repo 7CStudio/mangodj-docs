@@ -14,7 +14,6 @@ includes:
   - user_works
   - musicians
   - acts
-  - errors
 
 search: true
 ---
