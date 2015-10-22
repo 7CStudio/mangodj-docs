@@ -65,7 +65,7 @@ http GET /api/user_works/2/ "Authorization: Token my_token_here"
 ```json
 {
   "id": 2,
-  "description": 'Some Amazing Description',
+  "description": "Some Amazing Description",
   "thumbnail": "https://www.youtube.com/watch?v=7JmhK6MHS40",
   "title": "Penny Dreadful - Soundtrack",
   "item_id": "https://www.youtube.com/watch?v=7JmhK6MHS40",
