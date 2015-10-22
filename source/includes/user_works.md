@@ -10,23 +10,38 @@ http GET /api/user_works/ "Authorization: Token my_token_here"
 
 ```json
 {
-    "count": 1,
-    "next": null,
-    "previous": null,
-    "results": [
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 5,
+      "description": "My new youtube video",
+      "thumbnail": "https://www.youtube.com/watch?v=7JmhK6MHS40",
+      "title": "Penny Dreadful - Soundtrack",
+      "item_id": "https://www.youtube.com/watch?v=7JmhK6MHS40",
+      "source_type": 1,
+      "acts": null,
+      "users": [
         {
-            "description": "My new youtube video",
-            "id": 2,
-            "item_id": "youtube.com/mywork",
-            "source_type": 1,
-            "thumbnail": "youtube.com/thumbnail",
-            "title": "my video"
+          "id": 4,
+          "email": "3rduser@hi.com",
+          "name": null,
+          "profile_picture": null,
+          "works": [
+            "http://127.0.0.1:8000/api/user_works/5/"
+          ],
+          "acts": [
+            "http://127.0.0.1:8000/api/acts/3/"
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
-This endpoint retrieves all the works of a user.
+This endpoint retrieves all the works of current user.
 
 ### HTTP Request
 
@@ -34,9 +49,9 @@ This endpoint retrieves all the works of a user.
 
 ### Query Parameters
 
-Parameter | Description | Required
---------- | ----------- | --------
-page | pagination parameter | No
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+page | pagination parameter | No | query | integer
 
 
 ## Get a specific User Work
@@ -49,12 +64,27 @@ http GET /api/user_works/2/ "Authorization: Token my_token_here"
 
 ```json
 {
-    "description": "My new youtube video",
-    "id": 2,
-    "item_id": "youtube.com/mywork",
-    "source_type": 1,
-    "thumbnail": "youtube.com/thumbnail",
-    "title": "my video"
+  "id": 2,
+  "description": 'Some Amazing Description',
+  "thumbnail": "https://www.youtube.com/watch?v=7JmhK6MHS40",
+  "title": "Penny Dreadful - Soundtrack",
+  "item_id": "https://www.youtube.com/watch?v=7JmhK6MHS40",
+  "source_type": 1,
+  "acts": null,
+  "users": [
+    {
+      "id": 4,
+      "email": "3rduser@hi.com",
+      "name": null,
+      "profile_picture": null,
+      "works": [
+        "http://127.0.0.1:8000/api/user_works/5/"
+      ],
+      "acts": [
+        "http://127.0.0.1:8000/api/acts/3/"
+      ]
+    }
+  ]
 }
 ```
 
@@ -67,9 +97,9 @@ This endpoint retrieves a specific User Work.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the User Work to retrieve
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+ID | The ID of the User Work to retrieve | Yes | path | integer
 
 ## Delete a User Work
 
@@ -89,9 +119,9 @@ This endpoint deletes a specific User Work.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the User Work to delete
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+ID | The ID of the User Work to delete | Yes | path | integer
 
 ## Create a new User Work
 
@@ -103,12 +133,14 @@ http POST /api/user_works/ "Authorization: Token my_auth_token" item_id='https:/
 
 ```json
 {
+    "acts": null,
     "description": "Explorer Sir Malcolm Murray, American gunslinger Ethan Chandler and medium Vanessa Ives unite to combat supernatural threats in Victorian London.",
-    "id": 6,
+    "id": 7,
     "item_id": "https://www.youtube.com/watch?v=7JmhK6MHS40",
     "source_type": 1,
     "thumbnail": "https://www.youtube.com/watch?v=7JmhK6MHS40",
-    "title": "Penny Dreadful - Soundtrack"
+    "title": "Penny Dreadful - Soundtrack",
+    "users": []
 }
 ```
 
@@ -120,13 +152,13 @@ This endpoint creates a new User Work
 
 ### Post Parameters
 
-Parameter | Description | Required
---------- | ----------- | --------
-item_id | URL to the work | Yes
-source_type | Type of source | Yes
-description | Description of the work | No
-thumbnail | URL to the thumbnail | No
-title | Title of the work | No
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+item_id | URL to the work | Yes | form | string
+source_type | Type of source | Yes | form | string
+description | Description of the work | No | form | string
+thumbnail | URL to the thumbnail | No | form | string
+title | Title of the work | No | form | string
 
 ## Edit a Work, Multiple Fields
 
@@ -138,12 +170,27 @@ http PUT /api/user_works/6/ "Authorization: Token my_auth_token" item_id='https:
 
 ```json
 {
-    "description": "Explorer Sir Malcolm Murray, American gunslinger Ethan Chandler and medium Vanessa Ives unite to combat supernatural threats in Victorian London.",
+    "acts": null,
+    "description": null,
     "id": 6,
     "item_id": "https://www.googletube.com/watch?v=7JmhK6MHS40",
     "source_type": 1,
     "thumbnail": "https://www.googletube.com/watch?v=7JmhK6MHS40",
-    "title": "Penny Dreadful - Soundtrack But From Google"
+    "title": "Penny Dreadful - Soundtrack But From Google",
+    "users": [
+        {
+            "acts": [
+                "http://localhost:8000/api/acts/3/"
+            ],
+            "email": "3rduser@hi.com",
+            "id": 4,
+            "name": null,
+            "profile_picture": null,
+            "works": [
+                "http://localhost:8000/api/user_works/5/"
+            ]
+        }
+    ]
 }
 ```
 
@@ -153,7 +200,7 @@ This endpoint edits a Work
 
 `PUT api/user_works/{id}`
 
-### Post Parameters
+### Put Parameters
 
 Parameter | Description | Required | Parameter Type | Data Type
 --------- | ----------- | -------- | -------------- | ---------
@@ -175,12 +222,27 @@ http PATCH /api/user_works/6/ "Authorization: Token my_auth_token" item_id='http
 
 ```json
 {
-    "description": "Explorer Sir Malcolm Murray, American gunslinger Ethan Chandler and medium Vanessa Ives unite to combat supernatural threats in Victorian London.",
-    "id": 6,
+    "acts": null,
+    "description": null,
+    "id": 5,
     "item_id": "https://www.googletube.com/watch?v=7JmhK6MHS40",
     "source_type": 1,
     "thumbnail": "https://www.googletube.com/watch?v=7JmhK6MHS40",
-    "title": "Penny Dreadful - PATCHED"
+    "title": "Penny Dreadful - Soundtrack But From Google",
+    "users": [
+        {
+            "acts": [
+                "http://localhost:8000/api/acts/3/"
+            ],
+            "email": "3rduser@hi.com",
+            "id": 4,
+            "name": null,
+            "profile_picture": null,
+            "works": [
+                "http://localhost:8000/api/user_works/5/"
+            ]
+        }
+    ]
 }
 ```
 
@@ -190,7 +252,7 @@ This endpoint edits a Work
 
 `PUT api/user_works/{id}`
 
-### Post Parameters
+### Patch Parameters
 
 Parameter | Description | Required | Parameter Type | Data Type
 --------- | ----------- | -------- | -------------- | ---------

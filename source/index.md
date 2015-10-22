@@ -24,6 +24,10 @@ Welcome! Here you can find docs for Mango API.
 
 # Authentication
 
-All authenticated requests will have a HTTP header `Authorization` containing `Token my_token_here`.
+All requests, except for signup, needs to be authenticated. Hence all requests need to have a HTTP header `Authorization` containing string `Token my_token_here`.
+
+ex.:
+
+    http GET /api/protected_resource "Authorization: Token 89b87375895304da7dccff753bf0e38dd177254c"
 
 To get a new authorization token, send `POST` request to `/api/user_works/`
