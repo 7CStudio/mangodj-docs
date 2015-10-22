@@ -23,12 +23,12 @@ Creates a new User.
 
 ### POST Parameters
 
-Parameter | Description | Type | Required
---------- | ----------- | ---- | --------
-name | name of the user | string | yes
-profile_picture | URL to the profile picture | string | yes
-access_token | Facebook access token | string | yes
-email | email address | string | yes
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- |--------- | -------------- | ---------
+name | name of the user | yes | form | string
+profile_picture | URL to the profile picture | yes | form | string
+access_token | Facebook access token | yes | form | string
+email | email address | yes | form | string
 
 ## Get current User Profile
 
@@ -40,35 +40,23 @@ http GET api/user_profiles/ "Authorization: Token my_token_here"
 
 ```json
 {
-    "count": 1,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "email": "3rduser@hi.com",
-            "id": 4,
-            "name": null,
-            "profile_picture": null,
-            "works": [
-                {
-                    "description": "My new youtube video",
-                    "id": 3,
-                    "item_id": "youtube.com/mywork",
-                    "source_type": 1,
-                    "thumbnail": "youtube.com/thumbnail",
-                    "title": "my video"
-                },
-                {
-                    "description": "Explorer Sir Malcolm Murray, American gunslinger Ethan Chandler and medium Vanessa Ives unite to combat supernatural threats in Victorian London.",
-                    "id": 6,
-                    "item_id": "https://www.googletube.com/watch?v=7JmhK6MHS40",
-                    "source_type": 1,
-                    "thumbnail": "https://www.googletube.com/watch?v=7JmhK6MHS40",
-                    "title": "Penny Dreadful - PATCHED"
-                }
-            ]
-        }
-    ]
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 4,
+      "email": "3rduser@hi.com",
+      "name": null,
+      "profile_picture": null,
+      "works": [
+        "http://127.0.0.1:8000/api/user_works/5/"
+      ],
+      "acts": [
+        "http://127.0.0.1:8000/api/acts/3/"
+      ]
+    }
+  ]
 }
 ```
 

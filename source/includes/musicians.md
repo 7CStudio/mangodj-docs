@@ -10,41 +10,41 @@ http GET /api/musicians/ "Authorization: Token my_token_here"
 
 ```json
 {
-    "count": 3,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "email": "ar_rahman@gmail.com",
-            "id": 1,
-            "name": "A R Rahman",
-            "profile_picture": "http://ar-rahman.com",
-            "works": []
-        },
-        {
-            "email": "mobi@musics.com",
-            "id": 2,
-            "name": "Mobi",
-            "profile_picture": null,
-            "works": []
-        },
-        {
-            "email": "hanszimmerman@musics.com",
-            "id": 3,
-            "name": "Hans Zimmerman",
-            "profile_picture": null,
-            "works": [
-                {
-                    "description": "Dark Knight Opening Video",
-                    "id": 3,
-                    "item_id": "youtube.com/mywork",
-                    "source_type": 1,
-                    "thumbnail": "youtube.com/thumbnail",
-                    "title": "Dark Knight Opening Video"
-                }
-            ]
-        }
-    ]
+  "count": 3,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "email": "newguy2@hi.com",
+      "name": null,
+      "profile_picture": null,
+      "works": [
+        "http://127.0.0.1:8000/api/user_works/2/"
+      ],
+      "acts": []
+    },
+    {
+      "id": 2,
+      "email": "3rduser@hi.com",
+      "name": null,
+      "profile_picture": null,
+      "works": [
+        "http://127.0.0.1:8000/api/user_works/5/"
+      ],
+      "acts": [
+        "http://127.0.0.1:8000/api/acts/3/"
+      ]
+    },
+    {
+      "id": 3,
+      "email": "user@email.com",
+      "name": "Hans Zimmer",
+      "profile_picture": "http://facebook/profile/pic.png",
+      "works": [],
+      "acts": []
+    }
+  ]
 }
 ```
 
@@ -54,12 +54,12 @@ This endpoint retrieves all the musicians.
 
 `GET api/musicians`
 
-### Query Parameters
+### GET Parameters
 
-Parameter | Description | Required
---------- | ----------- | --------
-act | filter by `act` | No
-page | pagination parameter | No
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+act | filter by `act` | No | query | integer
+page | pagination parameter | No | query | integer
 
 ## Get A Specific Musician
 
@@ -71,19 +71,12 @@ http GET /api/musicians/3/ "Authorization: Token my_token_here"
 
 ```json
 {
-    "email": "hanszimmerman@musics.com",
+    "email": "hanszimmer@musics.com",
     "id": 3,
-    "name": "Hans Zimmerman",
+    "name": "Hans Zimmer",
     "profile_picture": null,
     "works": [
-        {
-            "description": "Dark Knight Opening Video",
-            "id": 3,
-            "item_id": "youtube.com/mywork",
-            "source_type": 1,
-            "thumbnail": "youtube.com/thumbnail",
-            "title": "Dark Knight Opening Video"
-        }
+        "http://127.0.0.1:8000/api/user_works/7/"
     ]
 }
 ```
@@ -96,7 +89,7 @@ This endpoint retrieves a specific musician.
 
 ### Query Parameters
 
-Parameter | Description | Required
---------- | ----------- | --------
-id | ID of the musician | Yes
-act | filter by `act` | No
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+id | ID of the musician | Yes | path | integer
+act | filter by `act` | No | query | integer

@@ -10,26 +10,31 @@ http GET /api/acts/ "Authorization: Token my_auth_token"
 
 ```json
 {
-    "count": 3,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "description": null,
-            "id": 1,
-            "title": "user 2 band"
-        },
-        {
-            "description": null,
-            "id": 2,
-            "title": "user 3 band"
-        },
-        {
-            "description": "some desc",
-            "id": 3,
-            "title": "my supa act"
-        }
-    ]
+  "count": 3,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "description": null,
+      "title": "user 2 band",
+      "users": []
+    },
+    {
+      "id": 2,
+      "description": null,
+      "title": "user 3 band",
+      "users": []
+    },
+    {
+      "id": 3,
+      "description": null,
+      "title": "my supa act",
+      "users": [
+        "http://127.0.0.1:8000/api/musicians/3/"
+      ]
+    }
+  ]
 }
 ```
 
@@ -41,10 +46,10 @@ This endpoint returns all the Acts
 
 ### Get Parameters
 
-Parameter | Description | Required | Parameter Type
---------- | ----------- | -------- | --------------
-musician | Musician ID to filter | No | query
-page | pagination ID | No | query
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+musician | Musician ID to filter | No | query | integer
+page | pagination ID | No | query | integer
 
 ## Create a new Act
 
@@ -57,8 +62,9 @@ http POST /api/acts/ "Authorization: Token my_auth_token" title='Band of Pythons
 ```json
 {
     "description": "Some Super Cool Band!",
-    "id": 4,
-    "title": "Band of Pythons"
+    "id": 5,
+    "title": "Band of Pythons",
+    "users": []
 }
 ```
 
@@ -70,10 +76,10 @@ This endpoint creates an Act
 
 ### Post Parameters
 
-Parameter | Description | Required
---------- | ----------- | --------
-title | Name of the Act | Yes
-description | Description of the band | No
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+title | Name of the Act | Yes | form | string
+description | Description of the band | No | form | string
 
 ## Get an Act
 
@@ -85,9 +91,12 @@ http GET /api/acts/1/ "Authorization: Token my_auth_token"
 
 ```json
 {
-    "description": "Some Super Cool Band!",
-    "id": 1,
-    "title": "Band of Pythons"
+  "id": 5,
+  "description": "Some Super Cool Band!",
+  "title": "Band of Pythons",
+  "users": [
+    "http://127.0.0.1:8000/api/musicians/3/"
+  ]
 }
 ```
 
@@ -99,9 +108,9 @@ Returns a specific Act
 
 ### Post Parameters
 
-Parameter | Description | Required | Parameter Type
---------- | ----------- | -------- | --------------
-id | ID of the Act | Yes | path
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+id | ID of the Act | Yes | path | integer
 
 ## Edit an Act, Multiple Fields
 
@@ -113,9 +122,12 @@ http PUT api/acts/4/ "Authorization: Token my_auth_token" title='Some Band' desc
 
 ```json
 {
-    "description": "Some Band Desc",
+    "description": "Edited Description",
     "id": 4,
-    "title": "Some Band"
+    "title": "Band of Pythons",
+    "users": [
+        "http://localhost:8000/api/musicians/3/"
+    ]
 }
 ```
 
@@ -127,11 +139,11 @@ Edits a specific Act
 
 ### Post Parameters
 
-Parameter | Description | Required | Parameter Type
---------- | ----------- | -------- | --------------
-id | ID of the Act | Yes | path
-title | New title of the Act | No | form
-description | New description of the Act | No | form
+Parameter | Description | Required | Parameter Type | Data Type 
+--------- | ----------- | -------- | -------------- | ---------
+id | ID of the Act | Yes | path | integer
+title | New title of the Act | No | form | string
+description | New description of the Act | No | form | string
 
 ## Edit an Act, Single Field
 
@@ -145,7 +157,8 @@ http PATCH api/acts/4/ "Authorization: Token my_auth_token" title='Some Band PAT
 {
     "description": "Some Band Desc",
     "id": 4,
-    "title": "Some Band PATCHED"
+    "title": "Some Band PATCHED",
+    "users": []
 }
 ```
 
@@ -157,11 +170,11 @@ Edits a specific Act
 
 ### Post Parameters
 
-Parameter | Description | Required | Parameter Type
---------- | ----------- | -------- | --------------
-id | ID of the Act | Yes | path
-title | New title of the Act | No | form
-description | New description of the Act | No | form
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | -----------
+id | ID of the Act | Yes | path | integer
+title | New title of the Act | No | form | string
+description | New description of the Act | No | form | string
 
 ## Delete an Act
 
@@ -179,6 +192,6 @@ Deletes an Act
 
 ### Post Parameters
 
-Parameter | Description | Required | Parameter Type
---------- | ----------- | -------- | --------------
-id | ID of the Act | Yes | path
+Parameter | Description | Required | Parameter Type | Data Type
+--------- | ----------- | -------- | -------------- | ---------
+id | ID of the Act | Yes | path | integer
