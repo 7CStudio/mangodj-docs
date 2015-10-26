@@ -23,18 +23,7 @@ http GET /api/user_works/ "Authorization: Token my_token_here"
       "source_type": 1,
       "acts": null,
       "users": [
-        {
-          "id": 4,
-          "email": "3rduser@hi.com",
-          "name": null,
-          "profile_picture": null,
-          "works": [
-            "http://127.0.0.1:8000/api/user_works/5/"
-          ],
-          "acts": [
-            "http://127.0.0.1:8000/api/acts/3/"
-          ]
-        }
+        "http://127.0.0.1:8000/api/musicians/4/"
       ]
     }
   ]
@@ -72,18 +61,7 @@ http GET /api/user_works/2/ "Authorization: Token my_token_here"
   "source_type": 1,
   "acts": null,
   "users": [
-    {
-      "id": 4,
-      "email": "3rduser@hi.com",
-      "name": null,
-      "profile_picture": null,
-      "works": [
-        "http://127.0.0.1:8000/api/user_works/5/"
-      ],
-      "acts": [
-        "http://127.0.0.1:8000/api/acts/3/"
-      ]
-    }
+    "http://127.0.0.1:8000/api/musicians/4/"
   ]
 }
 ```
@@ -178,18 +156,7 @@ http PUT /api/user_works/6/ "Authorization: Token my_auth_token" item_id='https:
     "thumbnail": "https://www.googletube.com/watch?v=7JmhK6MHS40",
     "title": "Penny Dreadful - Soundtrack But From Google",
     "users": [
-        {
-            "acts": [
-                "http://localhost:8000/api/acts/3/"
-            ],
-            "email": "3rduser@hi.com",
-            "id": 4,
-            "name": null,
-            "profile_picture": null,
-            "works": [
-                "http://localhost:8000/api/user_works/5/"
-            ]
-        }
+      "http://127.0.0.1:8000/api/musicians/4/"
     ]
 }
 ```
@@ -230,18 +197,7 @@ http PATCH /api/user_works/6/ "Authorization: Token my_auth_token" item_id='http
     "thumbnail": "https://www.googletube.com/watch?v=7JmhK6MHS40",
     "title": "Penny Dreadful - Soundtrack But From Google",
     "users": [
-        {
-            "acts": [
-                "http://localhost:8000/api/acts/3/"
-            ],
-            "email": "3rduser@hi.com",
-            "id": 4,
-            "name": null,
-            "profile_picture": null,
-            "works": [
-                "http://localhost:8000/api/user_works/5/"
-            ]
-        }
+      "http://127.0.0.1:8000/api/musicians/4/"
     ]
 }
 ```
