@@ -10,39 +10,56 @@ http GET /api/musicians/ "Authorization: Token my_token_here"
 
 ```json
 {
-  "count": 3,
+  "count": 4,
   "next": null,
   "previous": null,
   "results": [
     {
-      "id": 1,
-      "email": "newguy2@hi.com",
-      "name": null,
-      "profile_picture": null,
-      "works": [
-        "http://127.0.0.1:8000/api/user_works/2/"
-      ],
-      "acts": []
-    },
-    {
       "id": 2,
-      "email": "3rduser@hi.com",
-      "name": null,
-      "profile_picture": null,
+      "email": "hi@avi.im",
+      "name": "some name",
+      "profile_picture": "http://avi-from-console.com",
       "works": [
-        "http://127.0.0.1:8000/api/user_works/5/"
+        19,
+        20,
+        21,
       ],
       "acts": [
-        "http://127.0.0.1:8000/api/acts/3/"
+        3,
+        9
+      ],
+      "roles": [
+        1
       ]
     },
     {
       "id": 3,
+      "email": "newguy2@hi.com",
+      "name": null,
+      "profile_picture": null,
+      "works": [],
+      "acts": [],
+      "roles": []
+    },
+    {
+      "id": 4,
+      "email": "3rduser@hi.com",
+      "name": null,
+      "profile_picture": null,
+      "works": [
+        5
+      ],
+      "acts": [],
+      "roles": []
+    },
+    {
+      "id": 5,
       "email": "user@email.com",
       "name": "Hans Zimmer",
       "profile_picture": "http://facebook/profile/pic.png",
       "works": [],
-      "acts": []
+      "acts": [],
+      "roles": []
     }
   ]
 }
@@ -71,13 +88,22 @@ http GET /api/musicians/3/ "Authorization: Token my_token_here"
 
 ```json
 {
-    "email": "hanszimmer@musics.com",
-    "id": 3,
-    "name": "Hans Zimmer",
-    "profile_picture": null,
-    "works": [
-        "http://127.0.0.1:8000/api/user_works/7/"
-    ]
+  "id": 3,
+  "email": "hi@avi.im",
+  "name": "some name",
+  "profile_picture": "http://avi-from-console.com",
+  "works": [
+    19,
+    20,
+    21,
+  ],
+  "acts": [
+    3,
+    9
+  ],
+  "roles": [
+    1
+  ]
 }
 ```
 

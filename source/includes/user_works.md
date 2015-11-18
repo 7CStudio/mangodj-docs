@@ -21,9 +21,16 @@ http GET /api/user_works/ "Authorization: Token my_token_here"
       "title": "Penny Dreadful - Soundtrack",
       "item_id": "https://www.youtube.com/watch?v=7JmhK6MHS40",
       "source_type": 1,
-      "acts": null,
+      "acts": 1,
       "users": [
-        "http://127.0.0.1:8000/api/musicians/4/"
+        {
+          "user": 2,
+          "role": 1
+        }
+      ],
+      "genre": [
+        1,
+        2
       ]
     }
   ]
@@ -59,9 +66,16 @@ http GET /api/user_works/2/ "Authorization: Token my_token_here"
   "title": "Penny Dreadful - Soundtrack",
   "item_id": "https://www.youtube.com/watch?v=7JmhK6MHS40",
   "source_type": 1,
-  "acts": null,
+  "acts": 1,
   "users": [
-    "http://127.0.0.1:8000/api/musicians/4/"
+    {
+      "user": 2,
+      "role": 1
+    }
+  ],
+  "genre": [
+    1,
+    2
   ]
 }
 ```
@@ -104,21 +118,29 @@ ID | The ID of the User Work to delete | Yes | path | integer
 ## Create a new User Work
 
 ```shell
-http POST /api/user_works/ "Authorization: Token my_auth_token" item_id='https://www.youtube.com/watch?v=7JmhK6MHS40' source_type=1 thumbnail="https://www.youtube.com/watch?v=7JmhK6MHS40" title="Penny Dreadful - Soundtrack" description="Explorer Sir Malcolm Murray, American gunslinger Ethan Chandler and medium Vanessa Ives unite to combat supernatural threats in Victorian London."
+http POST /api/user_works/ "Authorization: Token my_auth_token" item_id='https://www.youtube.com/watch?v=7JmhK6MHS40' source_type=1 thumbnail="https://www.youtube.com/watch?v=7JmhK6MHS40" title="Penny Dreadful - Soundtrack" description="Explorer Sir Malcolm Murray, American gunslinger Ethan Chandler and medium Vanessa Ives unite to combat supernatural threats in Victorian London." role=1 genre=1 acts=2
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "acts": null,
+    "acts": 2,
     "description": "Explorer Sir Malcolm Murray, American gunslinger Ethan Chandler and medium Vanessa Ives unite to combat supernatural threats in Victorian London.",
     "id": 7,
     "item_id": "https://www.youtube.com/watch?v=7JmhK6MHS40",
     "source_type": 1,
     "thumbnail": "https://www.youtube.com/watch?v=7JmhK6MHS40",
     "title": "Penny Dreadful - Soundtrack",
-    "users": []
+    "users": [
+      {
+        "user": 2,
+        "role": 1
+      }
+    ],
+    "genre": [
+      1
+    ]
 }
 ```
 
@@ -137,6 +159,11 @@ source_type | Type of source | Yes | form | string
 description | Description of the work | No | form | string
 thumbnail | URL to the thumbnail | No | form | string
 title | Title of the work | No | form | string
+role | Role of the user in this work | Yes | form | integer
+genre | Genre of the work | No | form | integer
+acts | Act ID if the work belongs to some Act | No | form | integer
+
+
 
 ## Edit a Work, Multiple Fields
 
@@ -156,7 +183,13 @@ http PUT /api/user_works/6/ "Authorization: Token my_auth_token" item_id='https:
     "thumbnail": "https://www.googletube.com/watch?v=7JmhK6MHS40",
     "title": "Penny Dreadful - Soundtrack But From Google",
     "users": [
-      "http://127.0.0.1:8000/api/musicians/4/"
+      {
+        "user": 2,
+        "role": 1
+      }
+    ],
+    "genre": [
+      1
     ]
 }
 ```
@@ -177,7 +210,9 @@ source_type | Type of source | No | form | string
 description | Description of the work | No | form | string
 thumbnail | URL to the thumbnail | No | form | string
 title | Title of the work | No | form | string
-
+role | Role of the user in this work | No | form | integer
+genre | Genre of the work | No | form | integer
+acts | Act ID if the work belongs to some Act | No | form | integer
 
 ## Edit a Work, Single Field
 
@@ -197,7 +232,13 @@ http PATCH /api/user_works/6/ "Authorization: Token my_auth_token" item_id='http
     "thumbnail": "https://www.googletube.com/watch?v=7JmhK6MHS40",
     "title": "Penny Dreadful - Soundtrack But From Google",
     "users": [
-      "http://127.0.0.1:8000/api/musicians/4/"
+      {
+        "user": 2,
+        "role": 1
+      }
+    ],
+    "genre": [
+      1
     ]
 }
 ```
@@ -218,3 +259,6 @@ source_type | Type of source | No | form | string
 description | Description of the work | No | form | string
 thumbnail | URL to the thumbnail | No | form | string
 title | Title of the work | No | form | string
+role | Role of the user in this work | No | form | integer
+genre | Genre of the work | No | form | integer
+acts | Act ID if the work belongs to some Act | No | form | integer

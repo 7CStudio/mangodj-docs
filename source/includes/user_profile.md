@@ -25,10 +25,10 @@ Creates a new User.
 
 Parameter | Description | Required | Parameter Type | Data Type
 --------- | ----------- |--------- | -------------- | ---------
-name | name of the user | yes | form | string
-profile_picture | URL to the profile picture | yes | form | string
 access_token | Facebook access token | yes | form | string
 email | email address | yes | form | string
+name | name of the user | no | form | string
+profile_picture | URL to the profile picture | no | form | string
 
 ## Get current User Profile
 
@@ -50,10 +50,18 @@ http GET api/user_profiles/ "Authorization: Token my_token_here"
       "name": null,
       "profile_picture": null,
       "works": [
-        "http://127.0.0.1:8000/api/user_works/5/"
+        19,
+        20,
+        21,
+        23
       ],
       "acts": [
-        "http://127.0.0.1:8000/api/acts/3/"
+        3,
+        9
+      ],
+      "roles": [
+        1,
+        3
       ]
     }
   ]

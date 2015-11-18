@@ -10,7 +10,7 @@ http GET /api/acts/ "Authorization: Token my_auth_token"
 
 ```json
 {
-  "count": 3,
+  "count": 2,
   "next": null,
   "previous": null,
   "results": [
@@ -18,21 +18,18 @@ http GET /api/acts/ "Authorization: Token my_auth_token"
       "id": 1,
       "description": null,
       "title": "user 2 band",
-      "users": []
+      "users": [
+        {
+          "user": 2,
+          "role": 1
+        }
+      ]
     },
     {
       "id": 2,
       "description": null,
       "title": "user 3 band",
       "users": []
-    },
-    {
-      "id": 3,
-      "description": null,
-      "title": "my supa act",
-      "users": [
-        "http://127.0.0.1:8000/api/musicians/3/"
-      ]
     }
   ]
 }
@@ -54,7 +51,7 @@ page | pagination ID | No | query | integer
 ## Create a new Act
 
 ```shell
-http POST /api/acts/ "Authorization: Token my_auth_token" title='Band of Pythons' description='Some Super Cool Band!'
+http POST /api/acts/ "Authorization: Token my_auth_token" title='Band of Pythons' description='Some Super Cool Band!' role=1
 ```
 
 > The above command returns JSON structured like this:
@@ -64,7 +61,12 @@ http POST /api/acts/ "Authorization: Token my_auth_token" title='Band of Pythons
     "description": "Some Super Cool Band!",
     "id": 5,
     "title": "Band of Pythons",
-    "users": []
+    "users": [
+      {
+        "user": 2,
+        "role": 1
+      }
+    ]
 }
 ```
 
@@ -80,6 +82,7 @@ Parameter | Description | Required | Parameter Type | Data Type
 --------- | ----------- | -------- | -------------- | ---------
 title | Name of the Act | Yes | form | string
 description | Description of the band | No | form | string
+role | Role of the user | Yes | form | string
 
 ## Get an Act
 
@@ -95,7 +98,10 @@ http GET /api/acts/1/ "Authorization: Token my_auth_token"
   "description": "Some Super Cool Band!",
   "title": "Band of Pythons",
   "users": [
-    "http://127.0.0.1:8000/api/musicians/3/"
+    {
+      "user": 2,
+      "role": 1
+    }
   ]
 }
 ```
@@ -126,7 +132,10 @@ http PUT api/acts/4/ "Authorization: Token my_auth_token" title='Some Band' desc
     "id": 4,
     "title": "Band of Pythons",
     "users": [
-        "http://localhost:8000/api/musicians/3/"
+      {
+        "user": 2,
+        "role": 1
+      }
     ]
 }
 ```
@@ -144,6 +153,8 @@ Parameter | Description | Required | Parameter Type | Data Type
 id | ID of the Act | Yes | path | integer
 title | New title of the Act | No | form | string
 description | New description of the Act | No | form | string
+role | Role of the user | No | form | integer
+
 
 ## Edit an Act, Single Field
 
@@ -175,6 +186,7 @@ Parameter | Description | Required | Parameter Type | Data Type
 id | ID of the Act | Yes | path | integer
 title | New title of the Act | No | form | string
 description | New description of the Act | No | form | string
+role | Role of the user | No | form | integer
 
 ## Delete an Act
 
