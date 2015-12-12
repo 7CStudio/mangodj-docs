@@ -14,6 +14,8 @@ includes:
   - user_works
   - musicians
   - acts
+  - search
+  - insights
   - role
   - genre
 
